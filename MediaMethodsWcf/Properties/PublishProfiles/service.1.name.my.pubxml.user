@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAsREIj5LxzUSJAWEnjJG11wAAAAACAAAAAAAQZgAAAAEAACAAAABu5MBwkYJtdYoeVJCRBjKswv2q+43yDLM+5Ts/lrQKtAAAAAAOgAAAAAIAACAAAAAoKUAgOg5bR879x8udQDyr9BpdkhdXAcMKhX/URhjTGiAAAABWL1+U9J0po0v4UDswr/rqDlFcLvk1lqlFqQsWJiZVcUAAAADic4BHhGw3Ab7Kwij4tD8Y3A5o0fKGF0/mXzCY+i1E9h9LDex7aFNb+2mkhOjHXmpCLkdIHW2Psd1EJS9+y00O</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ftp.1.name.my/api.1.name.my/wwwroot</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/MediaMethodsWcf.dll">
+      <publishTime>04/16/2016 00:09:15</publishTime>
+    </File>
+    <File Include="GeoLocationService.svc">
+      <publishTime>04/05/2016 16:14:16</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/06/2016 18:59:05</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
