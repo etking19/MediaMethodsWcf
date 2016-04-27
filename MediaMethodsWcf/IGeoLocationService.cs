@@ -52,6 +52,9 @@ namespace MediaMethodsWcf
         string RemoveAdmin(int adminId);
 
         [OperationContract]
+        string GetAllAdmins();
+
+        [OperationContract]
         string GetStatistics(int locationId);
 
         [OperationContract]

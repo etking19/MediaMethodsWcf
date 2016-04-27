@@ -554,6 +554,46 @@ namespace MediaMethodsWcf
             }
         }
 
+        public string GetAllAdmins()
+        {
+            try
+            {
+                if (false == checkAuthentication())
+                {
+                    return sJavaSerializer.Serialize(new Response() { success = false, message = "Invalid login" });
+                }
+
+                List<AdminsObject> adminsList = new List<AdminsObject>();
+                using (MySqlConnection conn = new MySqlConnection(ConnectionString))
+                {
+                    if (conn.State != System.Data.ConnectionState.Open)
+                        conn.Open();
+
+                    MySqlCommand command = conn.CreateCommand();
+                    command.CommandText = String.Format("Select * from admins");
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            adminsList.Add(new AdminsObject() {
+
+                                id = (int)reader["id"],
+                                name = (string)reader["display_name"],
+                                username = (string)reader["username"]
+                            });
+                        }
+                    }
+                }
+
+                return sJavaSerializer.Serialize(new Response() { success = true, payload = adminsList });
+            }
+            catch (Exception ex)
+            {
+                return sJavaSerializer.Serialize(new Response() { success = false, message = ex.Message });
+            }
+        }
+
+
         public string RemoveAdmin(int adminId)
         {
             try
