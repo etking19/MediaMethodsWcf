@@ -171,6 +171,57 @@ namespace MediaMethodsWcf
             });
         }
 
+        public string ForgotPassword(string username)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(ConnectionString))
+                {
+                    if (conn.State != System.Data.ConnectionState.Open)
+                        conn.Open();
+
+                    MySqlCommand command = conn.CreateCommand();
+                    command.CommandText = String.Format("Select * from admins where username='{0}'", username);
+
+                    MySqlDataReader reader = command.ExecuteReader();
+                    if (false == reader.Read())
+                    {
+                        return sJavaSerializer.Serialize(new Response() { success = false });
+                    }
+
+                    TimeSpan ts = DateTime.UtcNow - DateTime.Parse(reader["last_pw_request"].ToString());
+                    if (ts.TotalMinutes < 10)
+                    {
+                        return sJavaSerializer.Serialize(new Response() { success = false, message = "Please wait 10 minutes before requesting another password. Contact administrator if you keep getting this message." });
+                    }
+
+                    string currentPw = (string)reader["password"];
+                    if (currentPw == string.Empty)
+                    {
+                        return sJavaSerializer.Serialize(new Response() { success = false, message = "YOur account was not activated. Please access your account via link sent to your mobile phone." });
+                    }
+
+                    // update the token with new validity
+                    reader.Close();
+                    command.CommandText = String.Format("Update admins set last_pw_request='{1}' where username='{0}'",
+                        username, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
+                    command.ExecuteNonQuery();
+
+                    // send current password to admin phone
+                    String message = HttpUtility.UrlEncode("Media Methods Sdn. Bhd.%0A%0AYour admin password is: " + currentPw);
+                    sendSMSToURL("http://www.isms.com.my/isms_send.php?un=" + ConfigurationManager.AppSettings.Get("ismsUsername")
+                        + "&pwd=" + ConfigurationManager.AppSettings.Get("ismsPassword")
+                        + "&dstno=" + username + "&msg=" + message + "&type=1");
+
+                    return sJavaSerializer.Serialize(new Response() { success = true });
+                }
+            }
+            catch (Exception ex)
+            {
+                return sJavaSerializer.Serialize(new Response() { success = false, message = ex.Message });
+            }
+        }
+
         public string FirstTimeLogin(string username)
         {
             try
@@ -423,6 +474,7 @@ namespace MediaMethodsWcf
                     return sJavaSerializer.Serialize(new Response() { success = false, message = "Expect phone number" });
                 }
 
+                string sentResult = "";
                 using (MySqlConnection conn = new MySqlConnection(ConnectionString))
                 {
                     if (conn.State != System.Data.ConnectionState.Open)
@@ -433,13 +485,13 @@ namespace MediaMethodsWcf
                     command.ExecuteNonQuery();
 
                     // send notification to new user
-                    String message = HttpUtility.UrlEncode("Media Methods Sdn. Bhd.%0A%0APlease click following link to access your admin account:%0A" + "http://mediamethods.my/admin?id=" + username);
-                    sendSMSToURL("http://www.isms.com.my/isms_send.php?un=" + ConfigurationManager.AppSettings.Get("ismsUsername") 
+                    String message = HttpUtility.UrlEncode("Media Methods Sdn. Bhd.%0A%0ANew admin account created. Click following link to access your account:%0A" + "http://mediamethods.my/admin?id=" + username);
+                    sentResult = sendSMSToURL("http://www.isms.com.my/isms_send.php?un=" + ConfigurationManager.AppSettings.Get("ismsUsername") 
                         + "&pwd=" + ConfigurationManager.AppSettings.Get("ismsPassword") 
                         + "&dstno=" + username + "&msg=" + message + "&type=1");
                 }
 
-                return sJavaSerializer.Serialize(new Response() { success = true });
+                return sJavaSerializer.Serialize(new Response() { success = true, message = sentResult });
             }
             catch (Exception ex)
             {

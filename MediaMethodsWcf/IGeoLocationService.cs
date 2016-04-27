@@ -22,6 +22,9 @@ namespace MediaMethodsWcf
         string EditPassword(string oldPassword, string newPassword);
 
         [OperationContract]
+        string ForgotPassword(string username);
+
+        [OperationContract]
         string AddLocation(string name, float longitude, float latitude, string image, int radius,
             string startTime, string endTime, string imageIcon, string imageBig,
             string enTitle, string enMsg,
