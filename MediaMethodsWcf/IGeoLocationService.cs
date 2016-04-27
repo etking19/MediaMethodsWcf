@@ -12,40 +12,49 @@ namespace MediaMethodsWcf
     [ServiceContract]
     public interface IGeoLocationService
     {
+        [OperationContract]
+        string Login(string username, string password);
 
         [OperationContract]
-        string GetData(int value);
+        string FirstTimeLogin(string username);
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        string EditPassword(string oldPassword, string newPassword);
+
+        [OperationContract]
+        string AddLocation(string name, float longitude, float latitude, string image, int radius,
+            string startTime, string endTime, string imageIcon, string imageBig,
+            string enTitle, string enMsg,
+            string msTitle, string msMsg,
+            string zhTitle, string zhMsg);
+
+        [OperationContract]
+        string EditLocation(int locationId,
+            string name, float longitude, float latitude, int radius,
+            string startTime, string endTime, string imageIcon, string imageBig,
+            string enTitle, string enMsg,
+            string msTitle, string msMsg,
+            string zhTitle, string zhMsg);
+
+        [OperationContract]
+        string EnabledLocation(int locationId, bool enable);
+
+        [OperationContract]
+        string AddAdmin(string username, string displayName);
+
+        [OperationContract]
+        string EditAdmin(int adminId, string displayName);
+
+        [OperationContract]
+        string RemoveAdmin(int adminId);
+
+        [OperationContract]
+        string GetStatistics(int locationId);
 
         [OperationContract]
         string UpdateLocation(string id, double latitude, double longitude);
 
         [OperationContract]
-        string GetAllTargets();
-    }
-
-
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class CompositeType
-    {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        string GetAllLocations();
     }
 }
