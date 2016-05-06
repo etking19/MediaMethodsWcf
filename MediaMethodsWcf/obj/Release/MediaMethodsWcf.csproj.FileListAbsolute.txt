@@ -4,3 +4,4 @@ C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MediaMethod
 C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Release\MediaMethodsWcf.csprojResolveAssemblyReference.cache
 C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Release\MediaMethodsWcf.dll
 C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Release\MediaMethodsWcf.pdb
+C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MySql.Data.dll
