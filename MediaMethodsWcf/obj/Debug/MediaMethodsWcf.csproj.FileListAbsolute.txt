@@ -4,9 +4,14 @@ C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MediaMethod
 C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Debug\MediaMethodsWcf.csprojResolveAssemblyReference.cache
 C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Debug\MediaMethodsWcf.dll
 C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Debug\MediaMethodsWcf.pdb
+<<<<<<< HEAD
 C:\Users\etking\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MediaMethodsWcf.dll.config
 C:\Users\etking\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MediaMethodsWcf.dll
 C:\Users\etking\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MediaMethodsWcf.pdb
 C:\Users\etking\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Debug\MediaMethodsWcf.csprojResolveAssemblyReference.cache
 C:\Users\etking\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Debug\MediaMethodsWcf.dll
 C:\Users\etking\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\obj\Debug\MediaMethodsWcf.pdb
+=======
+C:\Users\Denell\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MySql.Data.dll
+>>>>>>> origin/master
+C:\Users\etking\Documents\GitHub\MediaMethodsWcf\MediaMethodsWcf\bin\MySql.Data.dll
